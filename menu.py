@@ -150,7 +150,7 @@ while place_order:
                         
                         # Add the item name, price, and quantity to the order list
                         order = {
-                            "Item name": menu_selection_name,
+                            "Item_name": menu_selection_name,
                             "Price": menu_selection_price,
                             "Quantity": quantity
                         }
@@ -180,36 +180,72 @@ while place_order:
 
     while True:
         # Ask the customer if they would like to order anything else
-        keep_ordering = input("Would you like to keep ordering? (Y)es or (N)o ")
- ## START HERE ON MODULE INSTRUCTS
-        # 5. Check the customer's input
+        keep_ordering = input("Would you like to keep ordering? (Y)es or (N)o ").lower()
 
-                # Keep ordering
-
+        # Check the customer's input
+        match keep_ordering:
+            case "yes":
+                 # Keep ordering
+                place_order = True
+                break
+            case "y":
+                 # Keep ordering
+                place_order = True
+                break  
+            case "no":
                 # Exit the keep ordering question loop
-
-                # Complete the order
-
+                place_order = False
+                print("Thank you for your order")
+                break 
+            case "n":
+                # Exit the keep ordering question loop                
+                place_order = False
                 # Since the customer decided to stop ordering, thank them for
                 # their order
-
-                # Exit the keep ordering question loop
-
-
+                print("Thank you for your order")
+                break 
+            case _:
                 # Tell the customer to try again
+                print("Invalid input. Please try again.")   
 
-
+   
 # Print out the customer's order
 print("This is what we are preparing for you.\n")
 
 # Uncomment the following line to check the structure of the order
-#print(order)
+#print(order_list)
 
 print("Item name                 | Price  | Quantity")
 print("--------------------------|--------|----------")
-
 # 6. Loop through the items in the customer's order
-
+for x in order_list:  
+    order = dict(x)
+    itmname=""
+    itmprice=float(0)
+    itmqty=int(0)
+    i = 1
+    #find the dict values, set them to var
+    for x in order.values():        
+        if(i==1):
+            itmname = x        
+        if(i==2):
+            itmprice=float(x)
+        if(i==3):
+            itmqty=int(x)            
+            break
+        i += 1
+    
+    # create spacing vars, print loaded vars
+    num_itemname_spaces = 24 - len(itmname)
+    itemname_spaces = "  " * num_itemname_spaces
+    print(f"{itmname}{itemname_spaces} | ${itmprice} | {itmqty}")
+    # order[i] = {
+    #     "Item name": key,
+    #     "Price": value
+    # }
+    
+    
+    
     # 7. Store the dictionary items as variables
 
 
