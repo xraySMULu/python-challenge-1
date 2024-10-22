@@ -206,14 +206,14 @@ while place_order:
    
 # Print out the customer's order
 print("Here is your order.\n")
+print("Item name                 | Price  | Quantity   | Total")
+print("--------------------------|--------|------------|---------")
 
 subtotals_list = []
 subtotal=float(0)
 taxtotal=float(0)
-grandtotal=float(0)   
+grandtotal=float(0)  
 
-print("Item name                 | Price  | Quantity   | Total")
-print("--------------------------|--------|------------|---------")
 # 6. Create a to loop to loop through the items in the customer's order
 for x in order_list:  
     res=0
