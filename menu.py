@@ -55,11 +55,6 @@ menu = {
 
 order_list = []
 
-#load list example
-#for index, (key, value) in enumerate(menu.items()):
-#  my_order_list.append((index, key, value))
-#  print(my_order_list) 
-
 # Launch the store and present a greeting to the customer
 print("Welcome to the variety food truck.")
 
@@ -96,7 +91,6 @@ while place_order:
             menu_category_name = menu_items[int(menu_category)]
             # Print out the menu category name they selected
             print(f"You selected {menu_category_name}")
-
             # Print out the menu options from the menu_category_name
             print(f"What {menu_category_name} item would you like to order?")
             i = 1
@@ -128,12 +122,14 @@ while place_order:
                 # Get the customer's input
                 menu_selection = input("Type menu item number: ")
                 # Print out the menu item number they selected
-                print(f"You selected {menu_selection}")
+                #print(f"You selected {menu_selection}")
                 # 3. Check if the customer typed a number           
                 if menu_selection.isdigit():
-                        # Check if the customer's input is a valid option
-                        # 4. Check if the menu selection is in the menu items
+                     # Convert the menu selection to an integer
+                    menu_selection = int(menu_selection)
+                        # Check if the customer's input is a valid option                       
                     if int(menu_selection) in menu_items.keys():
+                        # 4. its a key, proceed
                         menu_itm = menu_items[int(menu_selection)]                    
                         # Store the item name as a variable
                         menu_selection_name = menu_itm["Item name"]
@@ -159,13 +155,13 @@ while place_order:
                             # Print out the menu category name they selected
                         print(f"You selected {menu_selection_name}")
                     else:  
+                        # 4. if not a key, print error
                         # Tell the customer that their input isn't valid
                         # Tell the customer they didn't select a menu option
                         print("Not a valid selection.")  
                 
                 else:                    
-                    # Convert the menu selection to an integer
-                    menu_selection = int(menu_selection)
+                    
                     # Tell the customer they didn't select a number
                     print("You didn't input a number.")                      
                 
@@ -176,6 +172,7 @@ while place_order:
         # Tell the customer they didn't select a number
         print("You didn't select a number.")
 
+    # 5. Continuous while loop to keep ordering
     while True:
         # Ask the customer if they would like to order anything else
         keep_ordering = input("Would you like to keep ordering? (Y)es or (N)o ").lower()
@@ -208,112 +205,82 @@ while place_order:
 
    
 # Print out the customer's order
-print("This is what we are preparing for you.\n")
+print("Here is your order.\n")
 
-# Uncomment the following line to check the structure of the order
-#print(order_list)
+subtotals_list = []
+subtotal=float(0)
+taxtotal=float(0)
+grandtotal=float(0)   
 
-print("Item name                 | Price    | Quantity | SubTotal | Tax      | Total    ")
-print("--------------------------|----------|----------|----------|----------|----------")
-# 6. Loop through the items in the customer's order
+print("Item name                 | Price  | Quantity   | Total")
+print("--------------------------|--------|------------|---------")
+# 6. Create a to loop to loop through the items in the customer's order
 for x in order_list:  
     res=0
     order = dict(x)
-    itmname=""
-    itmprice=float(0)
-    itmqty=int(0)
-    itmsubtotal=float(0) 
-    itmtax=float(0) 
-    totals_list = []
+    item_name=""
+    price=float(0)
+    quantity=int(0)
+    itmtotal=float(0)     
 
     i = 1
-    
+    ## Created to load values for calulation
+    totals_list = []
     #find the dict values, set them to var
     for x in order.values():        
          # Initialize result variable to 1
+         # 7. Save the value of each key to var
         res=1
         if(i==1):
-            itmname = x        
+            item_name = x        
         if(i==2):
-            itmprice=float(x)
-            totals_list.append(itmprice)
+            price=float(x)
+            totals_list.append(price)
         if(i==3):
-            itmqty=int(x) 
-            totals_list.append(itmqty)           
+            quantity=int(x) 
+            totals_list.append(quantity)           
             break        
         i += 1
-
-    # Loop through each value in list
+        
+    # Loop through each value in totals list, calculate qty * price for usage in an extra total column.
     for val in totals_list:        
         # Multiply current result by the current value
-        res = res * val       
-        
-    itmsubtotal=str(round(res, 2))       
-    ####FIX TAX
-    itmtax=itmsubtotal * 1.0825
-   
-    # create spacing vars, print loaded vars
-    num_itemname_spaces = 26 - len(itmname) - 21
+        res = res * val 
+        itmtotal=res
+    # round value to 2 decimel            
+    itmtotal =str(round(itmtotal, 2))       
+    # add total to grand total
+    subtotals_list.append(float(itmtotal))
+
+    # 8. calculate empty spaces
+    # 9. create space strings
+    num_itemname_spaces = 31 - len(item_name) - 6
     itemname_spaces = " " * num_itemname_spaces
-    num_itemprice_spaces = 10 - len(str(itmprice)) - 2 
+    num_itemprice_spaces = 8 - len(str(price)) - 2 
     itemprice_spaces = " " * num_itemprice_spaces
-    num_itemqty_spaces = 10 - len(str(itmqty)) - 2 
+    num_itemqty_spaces = 12 - len(str(quantity)) - 2 
     itemqty_spaces = " " * num_itemqty_spaces
-    num_itmsubtotal_spaces = 10 - len(str(itmsubtotal)) - 2 
-    itmsubtotal_spaces = " " * num_itmsubtotal_spaces
-    num_itmtax_spaces = 10 - len(str(itmtax)) - 2 
-    itmtax_spaces = " " * num_itmtax_spaces
-
-    print(f"{itmname}{itemname_spaces} | {itmprice}{itemprice_spaces} | {itmqty}{itemqty_spaces} | {itmsubtotal}{itemqty_spaces} | {itmtax}{itmtax_spaces}")
-    # order[i] = {
-    #     "Item name": key,
-    #     "Price": value
-    # }
     
-    # Use a list comprehension to calculate the total number of adult guests
-    #total_adult_guests = sum([guest["party_number_adults"] for guest in guests])
-
-    #print(f"Total adult guests entered: {total_adult_guests}")
-
+    # 10. print line for receipt using space strings
+    print(f"{item_name}{itemname_spaces} | {price}{itemprice_spaces} | {quantity}{itemqty_spaces} | {itmtotal}")
+   
     
-    
-    
-    # Calculate the total of all the birds in the birds list
-    #print(f"Total Order Balance: {sum(birds_list[2])/1000:.3f}kg")
-
-
-
-#     # Print out the data about the 4th bird in birds_list
-# for row in birds_list:
-#     print(row[3])
-
-# # Calculate the total weight (kg) of all the birds in the birds list
-# print(f"Total bird weights: {sum(birds_list[2])/1000:.3f}kg")
-
-# # Loop through the birds_dictionaries list
-# for item in birds_dictionaries:
-#     # Print the names of the birds and their lifespans from the birds_dictionary
-#     print(f'{item["name"]} can live for {item["lifespan"]} years')
-
-#     # Calculate and print out the size to weight ratio
-#     size_to_weight_ratio = item["size (cm)"] / item["weight (g)"]
-#     print(f"Its size to weight ratio is {size_to_weight_ratio}")
-#     print("-" * 50)
-
-# Highest size to weight ratio: hummingbird with 2.0
-# Lowest size to weight ratio: emperor penguin with 0.00115
-    
-
-
-
-
-
-    # 7. Store the dictionary items as variables
-    # 8. Calculate the number of spaces for formatted printing
-    # 9. Create space strings
-    # 10. Print the item name, price, and quantity
-
-
+subtotal = sum(subtotals_list)
 # 11. Calculate the cost of the order using list comprehension
-# Multiply the price by quantity for each item in the order list, then sum()
-# and print the prices.
+subtotal = sum([i for i in subtotals_list])
+
+subtotal =str(round(subtotal, 2))    
+taxtotal = float(subtotal) * 1.0825
+taxtotal = taxtotal - float(subtotal)
+taxtotal =str(round(taxtotal, 2))
+grandtotal = float(taxtotal) + float(subtotal)
+grandtotal =str(round(grandtotal, 2))
+
+print(f"----------------------------------------------------------")
+print(f"---------------------------------- | SubTotal   | {float(subtotal)}")
+print(f"---------------------------------- | SalesTax   | {float(taxtotal)}")
+print(f"---------------------------------- | GrandTotal | {float(grandtotal)}")
+
+order_list.clear
+totals_list.clear
+subtotals_list.clear
