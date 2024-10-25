@@ -121,8 +121,7 @@ while place_order:
                 # 2. Ask customer to input menu item number
                 # Get the customer's input
                 menu_selection = input("Type menu item number: ")
-                # Print out the menu item number they selected
-                #print(f"You selected {menu_selection}")
+                # Print out the menu item number they selected               
                 # 3. Check if the customer typed a number           
                 if menu_selection.isdigit():
                      # Convert the menu selection to an integer
@@ -224,6 +223,7 @@ for x in order_list:
     itmtotal=float(0)     
 
     i = 1
+
     ## Created to load values for calulation
     totals_list = []
     #find the dict values, set them to var
@@ -264,10 +264,11 @@ for x in order_list:
     # 10. print line for receipt using space strings
     print(f"{item_name}{itemname_spaces} | {price}{itemprice_spaces} | {quantity}{itemqty_spaces} | {itmtotal}")
    
-    
-subtotal = sum(subtotals_list)
+#subtotal = sum(subtotals_list)
+#subtotal = sum([i for i in subtotals_list])
+#print(f"{subtotal} of subtotal.")
 # 11. Calculate the cost of the order using list comprehension
-subtotal = sum([i for i in subtotals_list])
+subtotal = sum([x["Price"]*x["Quantity"] for x in order_list])
 
 subtotal =str(round(subtotal, 2))    
 taxtotal = float(subtotal) * 1.0825
