@@ -1,16 +1,12 @@
 # python-challenge-1
 [![forthebadge made-with-python](http://ForTheBadge.com/images/badges/made-with-python.svg)](https://www.python.org/)
 
-In this challenge, you’ll design an interactive ordering system for a food truck menu, applying the Python skills you've learned so far.
+This challenge includes designing an interactive ordering system from a food truck menu, using the skills you've learned in Python so far.
 
 ## What python-challenge-1 does
 
-The starter code includes functionality for displaying a menu to the customer. Your task is to adapt this code to allow customers to place orders, store their selections, and generate a receipt showing the total price of all ordered items. Comments in the starter code provide guidance on the steps needed for these additions.
+The starter code provided includes the code for printing the menu for the customer, which was part of one of your Day 3 activities. You will be adapting this menu to allow customers to place an order, which includes storing the customer's order and printing the receipt with the total price of all items ordered. The starter code includes comments, which you may use as a guide for the steps you need to add.
 
-## Application notes
-* The developer added features beyond the original requirements, specifically a line item for taxes and a grand total calculation.
-
-Check [v107+ docs](https://restsharp.dev/v107) for more information.
 
 ## Files
 
@@ -23,11 +19,10 @@ Check [v107+ docs](https://restsharp.dev/v107) for more information.
 This project has adopted the code of conduct defined by the Contributor Covenant to clarify expected behavior in our community.
 For more information see the [Python Software Foundation Code of Conduct](https://policies.python.org/python.org/code-of-conduct/).
 
-**Users violated the aforementioned code of conduct will be blocked.**
 
 ## Support
 
-python-challenge-1 is an open-source project with a single maintainer. The best way to resolve your issue is to fix it yourself. Fork the repository and submit a pull request. You can also motivate the maintainer by sponsoring this project.
+python-challenge-1 is an open-source project with a single maintainer. The best way to resolve your issue is to fix it yourself. Fork the repository and submit a pull request. 
 
 ### Get help
 
