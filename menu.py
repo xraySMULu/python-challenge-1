@@ -262,7 +262,7 @@ for x in order_list:
     itemqty_spaces = " " * num_itemqty_spaces
     
     # 10. print line for receipt using space strings
-    print(f"{item_name}{itemname_spaces} | {price}{itemprice_spaces} | {quantity}{itemqty_spaces} | {itmtotal}")
+    print(f"{item_name}{itemname_spaces} | {price}{itemprice_spaces} | {quantity}{itemqty_spaces} | ${itmtotal}")
    
 #subtotal = sum(subtotals_list)
 #subtotal = sum([i for i in subtotals_list])
@@ -278,9 +278,9 @@ grandtotal = float(taxtotal) + float(subtotal)
 grandtotal =str(round(grandtotal, 2))
 
 print(f"----------------------------------------------------------")
-print(f"---------------------------------- | SubTotal   | {float(subtotal)}")
-print(f"---------------------------------- | SalesTax   | {float(taxtotal)}")
-print(f"---------------------------------- | GrandTotal | {float(grandtotal)}")
+print(f"---------------------------------- | SubTotal   | ${float(subtotal):.2f}")
+print(f"---------------------------------- | SalesTax   | ${float(taxtotal):.2f}")
+print(f"---------------------------------- | GrandTotal | ${float(grandtotal):.2f}")
 
 order_list.clear
 totals_list.clear
